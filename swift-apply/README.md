@@ -1,188 +1,264 @@
-# ⚡ SwiftApply — Smart Job Application Assistant
+# ⚡ SwiftApply — AI-Powered Job Application Assistant
 
-> A Chrome browser extension that reads job postings, scores how well they match your profile, writes a tailored cover letter, and fills in application forms for you — all before you click anything.
-
----
-
-## What This Does (Plain English)
-
-You open a job posting in Chrome. You click the ⚡ SwiftApply button. A panel slides in on the right side of the page showing:
-
-- A **match score** (0–100) telling you if the job is worth applying for
-- A **reason breakdown** — why it matched or didn't
-- A **tailored CV** selected and adjusted for that specific role
-- A **custom cover letter** written for that job
-- Buttons to **auto-fill the application form** or skip
-
-You are always in control. SwiftApply never submits anything on your behalf — it only fills fields and hands the form back to you.
+> An intelligent Chrome extension that analyses job postings, matches them to your experience, generates tailored application documents, tracks your applications, and helps you apply faster—while keeping you fully in control.
 
 ---
 
-## Before You Start — You Need Two Things
+# What is SwiftApply?
 
-### 1. Google Chrome
-This is a Chrome browser extension. It only works in Google Chrome (not Firefox, Edge, or Safari).  
-Download Chrome at: https://www.google.com/chrome
+SwiftApply is an AI-powered Chrome extension designed to simplify and improve the job application process.
 
-### 2. A Gemini API Key (Required — Free)
-SwiftApply uses Google's Gemini AI to write cover letters, tailor your CV, and analyse job postings. Without an API key, **the extension will not run**.
+Instead of manually reading every vacancy, rewriting your CV, creating a new cover letter, and filling out repetitive application forms, SwiftApply performs these tasks in seconds.
 
-The good news: **Gemini has a free tier** — no credit card required, no charges for normal use.
+The extension analyses each job posting using Google's Gemini AI, determines how well it matches your profile, customises your CV, generates a personalised cover letter, and can automatically populate many online application forms.
 
-**How to get your free API key:**
-1. Go to https://aistudio.google.com/apikey
-2. Sign in with your Google account
-3. Click **Create API Key**
-4. Select **Create API key in new project**
-5. Copy the key that appears
-6. Store it somewhere safe — you won't be able to see it again
-
-> The free tier allows up to 1,500 requests per day and 15 per minute — more than enough for job hunting.  
-> Your API key is stored only on your own computer inside Chrome. It is never sent anywhere except directly to Google's servers when analysing a job.
+Unlike automated job bots, **SwiftApply never submits applications on your behalf**. Every application is reviewed and submitted manually by you.
 
 ---
 
-## Installation
+# Key Features
 
-### Step 1 — Download the extension files
+### 🤖 AI Job Match Scoring
 
-1. Go to this GitHub page: https://github.com/CarltonDzingira/ai-projects
-2. Click the green **Code** button
-3. Click **Download ZIP**
-4. Once downloaded, **unzip the folder** (right-click → Extract All on Windows)
-5. Open the unzipped folder. Inside you will find a folder called `swift-apply` — keep note of where this is saved.
-
-### Step 2 — Load it into Chrome
-
-1. Open **Google Chrome**
-2. In the address bar at the top, type exactly: `chrome://extensions` and press Enter
-3. In the top-right corner of that page, turn on **Developer mode** (there is a toggle switch)
-4. Click the **Load unpacked** button that appears on the left
-5. A file browser opens — navigate to and select the `swift-apply` folder you unzipped
-6. Click **Select Folder**
-7. SwiftApply will now appear in your extensions list with a ⚡ icon
-
-### Step 3 — Pin the extension (so you can see it)
-
-1. Click the **puzzle piece icon** (🧩) in the top-right corner of Chrome
-2. Find **SwiftApply** in the list
-3. Click the **pin icon** next to it
-4. The ⚡ icon will now always show in your toolbar
-
-### Step 4 — Add your API Key
-
-1. Click the ⚡ icon in your Chrome toolbar
-2. Click the **Settings (⚙)** icon inside the popup
-3. Paste your Claude API key into the field
-4. Click **Save API Key**
-5. Click **Test Connection** — it should confirm it is working
+* Analyses job descriptions using Google Gemini AI
+* Produces a match score (0–100)
+* Explains why a role matches—or doesn't
+* Helps prioritise worthwhile applications
 
 ---
 
-## How to Use It
+### 📄 Intelligent CV Tailoring
 
-1. Go to any job posting (Indeed, LinkedIn, Glassdoor, Pracuj.pl, or any company careers page)
-2. Click the ⚡ SwiftApply icon in your Chrome toolbar
-3. Click **"Analyse This Job"**
-4. Wait a few seconds while it reads the page and contacts Gemini AI
-5. A panel opens on the right showing your results:
+SwiftApply automatically selects the most suitable CV template for the role and customises it to better match the job description.
 
-| What you see | What it means |
-|---|---|
-| 🟢 Score 75–100 | Strong match — worth applying |
-| 🟢 Score 60–74 | Good shot — apply |
-| 🟡 Score 45–59 | Weak match — consider carefully |
-| 🔴 Score 1–44 | Poor fit — skip |
+Features include:
 
-6. Review the tailored CV and cover letter
-7. When ready, choose:
-   - **Auto-Fill** — fills the application form fields on the page
-   - **Apply Now** — same as Auto-Fill (you still click Submit yourself)
-   - **Skip** — close the panel and move on
-
-> SwiftApply **never submits** your application. You always click Submit.
+* Selecting the best CV for the position
+* Tailoring skills and experience
+* Optimising keywords
+* Maintaining ATS-friendly formatting
+* Downloading the tailored CV as a document
 
 ---
 
-## Supported Job Sites
+### 📝 AI Cover Letter Generation
 
-- Indeed.com
-- LinkedIn.com
-- Glassdoor.com
-- Pracuj.pl
-- Hiring Cafe
-- Any company careers page
+For every analysed job, SwiftApply generates a personalised cover letter based on:
 
----
+* The job description
+* Your experience
+* Your selected CV
+* Relevant skills
 
-## CV Templates (Built-in)
-
-SwiftApply automatically picks the right CV based on the job type:
-
-| CV Template | Used for |
-|---|---|
-| IT Support CV | IT Support, Help Desk, IT Analyst, Security, QA, Game Tester |
-| Customer Support CV | Customer Service, Support Agent, Representative |
-| Operations / Admin CV | Operations, Admin, Coordinator, Platform Ops, Real Time Manager, Dispatcher |
+The generated cover letter can be downloaded for future use or editing.
 
 ---
 
-## Project Structure (For Developers)
+### ⚡ Smart Form Autofill
 
-```
+SwiftApply automatically fills many online job application forms with your saved information.
+
+Supported fields include:
+
+* Personal information
+* Contact details
+* Employment history
+* Education
+* Skills
+* CV uploads (where supported)
+
+The extension never presses the Submit button.
+
+---
+
+### 📊 Job Tracking Dashboard
+
+SwiftApply keeps track of your job search by recording:
+
+* Jobs viewed
+* Jobs analysed
+* Jobs you've applied for
+* Match scores
+* Application status
+
+This helps users monitor their progress without maintaining a separate spreadsheet.
+
+---
+
+### 🎯 Role-Focused AI
+
+SwiftApply is currently optimised for identifying and tailoring applications for roles such as:
+
+* IT Support
+* Technical Support
+* Customer Support
+* Help Desk
+* QA / Game Testing
+* Operations
+* Administration
+* Dispatcher
+* Platform Operations
+* Similar technology and support-based positions
+
+The architecture is modular, allowing additional career paths and CV templates to be added in future versions.
+
+---
+
+### 🔒 Privacy First
+
+* API keys remain stored locally inside Chrome
+* Applications are never submitted automatically
+* User data is never shared except with Google's Gemini API for document generation
+* Users remain in complete control throughout the application process
+
+---
+
+# Workflow
+
+1. Open a job posting in Chrome.
+2. Click the ⚡ SwiftApply extension.
+3. Analyse the vacancy.
+4. Review the AI-generated match score.
+5. Read the explanation for the score.
+6. Generate a tailored CV.
+7. Generate a personalised cover letter.
+8. Download both documents if desired.
+9. Autofill the application form.
+10. Review everything.
+11. Submit the application manually.
+
+---
+
+# Requirements
+
+## Google Chrome
+
+SwiftApply is built as a Chrome Extension (Manifest V3) and currently supports Google Chrome.
+
+---
+
+## Google Gemini API Key
+
+A free Google Gemini API key is required.
+
+The API is used for:
+
+* Job analysis
+* Match scoring
+* CV tailoring
+* Cover letter generation
+
+The free tier is sufficient for normal job searching.
+
+---
+
+# Installation
+
+## 1. Download the repository
+
+Clone the repository or download the ZIP archive.
+
+## 2. Load the extension
+
+* Open Chrome
+* Visit `chrome://extensions`
+* Enable **Developer Mode**
+* Select **Load unpacked**
+* Choose the `swift-apply` folder
+
+## 3. Configure your API Key
+
+* Open SwiftApply
+* Navigate to Settings
+* Paste your Gemini API Key
+* Save
+* Test the connection
+
+---
+
+# Supported Platforms
+
+* LinkedIn
+* Indeed
+* Glassdoor
+* Pracuj.pl
+* Hiring Cafe
+* Company career websites
+
+---
+
+# Technologies
+
+* JavaScript (ES6)
+* Chrome Extension Manifest V3
+* Google Gemini API
+* HTML5
+* CSS3
+* Prompt Engineering
+* DOM Manipulation
+* Local Storage
+* AI-powered document generation
+
+---
+
+# Current CV Templates
+
+SwiftApply currently includes specialised CV templates for:
+
+| Template         | Target Roles                                                             |
+| ---------------- | ------------------------------------------------------------------------ |
+| IT Support       | IT Support, Help Desk, Technical Support, QA, Security, Game Testing     |
+| Customer Support | Customer Service, Support Agent, Customer Success                        |
+| Operations       | Operations, Dispatcher, Coordinator, Platform Operations, Administration |
+
+Additional templates can easily be added through the modular profile system.
+
+---
+
+# Project Structure
+
+```text
 swift-apply/
-├── manifest.json              # Extension config (MV3)
+├── assets/
 ├── background/
-│   └── service-worker.js      # Handles Gemini API calls
 ├── content/
-│   └── content.js             # Sidebar + job scraper + autofill
-├── sidebar/
-│   └── sidebar.css            # Sidebar styles
-├── popup/
-│   ├── popup.html
-│   ├── popup.css
-│   └── popup.js
-├── options/
-│   ├── options.html           # Settings page
-│   ├── options.css
-│   └── options.js
 ├── lib/
-│   ├── profile.js             # Profile + CV templates
-│   ├── scorer.js              # Job scoring engine
-│   └── gemini-api.js          # Gemini API integration
-└── assets/
-    ├── icon16.png
-    ├── icon48.png
-    └── icon128.png
+├── options/
+├── popup/
+├── scripts/
+├── sidebar/
+├── manifest.json
+├── package.json
+└── README.md
 ```
 
 ---
 
-## Troubleshooting
+# Future Improvements
 
-**The extension icon is not showing**  
-→ Click the 🧩 puzzle piece in Chrome's toolbar and pin SwiftApply.
+Planned enhancements include:
 
-**"API key not found" or cover letter not generating**  
-→ Go to Settings (⚙) and re-paste your Gemini API key. Make sure you clicked Save.
-
-**"Test Connection" fails**  
-→ Check that your API key was copied in full (no spaces at the start or end). You can generate a new one at aistudio.google.com/apikey — it's free.
-
-**The sidebar opens but the score does not load**  
-→ Refresh the job posting page and try again. Some pages load slowly.
-
-**Auto-fill did not work on a form**  
-→ Not all application forms are built the same way. Fill the remaining fields manually and submit as normal.
+* Additional career-specific CV templates
+* Support for more job boards
+* AI interview preparation
+* Resume analytics
+* Application success statistics
+* Multi-language support
+* Cloud synchronisation
+* Application reminders
 
 ---
 
-## License
+# License
 
-MIT License — © 2026 Carlton Dzingira
-
-Permission is granted to use and share this project, provided the original author is credited. This project may not be repackaged or sold without permission.
+MIT License © 2026 Carlton Dzingira
 
 ---
 
-## Built by Carlton Dzingira
+# Author
+
+**Carlton Dzingira**
+
+AI Developer • Software Engineer • Automation Enthusiast
+
+Built to demonstrate practical applications of Large Language Models, browser automation, prompt engineering, and AI-assisted productivity tools.
