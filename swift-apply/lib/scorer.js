@@ -163,7 +163,30 @@ export function scoreJob(jobData) {
     }
   }
 
-  // Language — required foreign language proficiency
+  // Language — direct pattern matches (fluency in X, X C1/C2, X spoken and written)
+  if (!autoFailReasons.length) {
+    const LANG_LIST = '(french|german|dutch|spanish|italian|portuguese|czech|hungarian|romanian|swedish|danish|finnish|norwegian|turkish|arabic|japanese|korean|chinese|mandarin)';
+    const LANG_OPTIONAL = /\b(optional|nice to have|advantage|asset|preferred|plus|bonus|beneficial|desirable|welcome|a plus|basic|a1|a2)\b/i;
+    const directPatterns = [
+      new RegExp(`\\b(fluency|fluent|proficiency|proficient|native|excellent|strong|advanced)\\s+in\\s+${LANG_LIST}\\b`, 'i'),
+      new RegExp(`\\b${LANG_LIST}\\s+(c1|c2|b2\\+|native|fluent|required|mandatory)\\b`, 'i'),
+      new RegExp(`\\b${LANG_LIST}\\s+(both\\s+)?(spoken\\s+and\\s+written|written\\s+and\\s+spoken)\\b`, 'i'),
+    ];
+    const sentences = text.split(/[.!?\n]+/);
+    for (const pat of directPatterns) {
+      for (const sentence of sentences) {
+        const m = sentence.match(pat);
+        if (m && !LANG_OPTIONAL.test(sentence)) {
+          const lang = (m[1] || m[2] || '').replace(/\b\w/g, c => c.toUpperCase());
+          autoFailReasons.push(`Requires ${lang} language (not held)`);
+          break;
+        }
+      }
+      if (autoFailReasons.length) break;
+    }
+  }
+
+  // Language — required foreign language proficiency (sentence-level check)
   if (!autoFailReasons.length) {
     const OPTIONAL_QUALIFIER = /\b(optional|nice to have|advantage|asset|preferred|plus|bonus|beneficial|desirable|welcome)\b/i;
     const FOREIGN_LANG_CHECKS = [
@@ -239,7 +262,8 @@ export function scoreJob(jobData) {
     const n = parseFloat(raw);
     if (!isNaN(n)) plnNums.push(n);
   }
-  if (plnNums.length > 0) {
+  const SALARY_CONTEXT = /\b(salary|wynagrodzenie|gross|net|monthly|per month|compensation|base pay|base salary|miesi[eę]cznie|brutto|netto|earnings|remuneration|pay range|pay scale)\b/i;
+  if (plnNums.length > 0 && SALARY_CONTEXT.test(salarySource)) {
     const lowest = Math.min(...plnNums);
     const isAnnual = /\b(annual|annually|per year|yearly|rocznie|\/year|\/yr)\b/i.test(salarySource);
     const isMonthly = /\b(monthly|per month|miesi[eę]cznie|\/month|\/mo)\b/i.test(salarySource);
@@ -459,7 +483,7 @@ export function scoreJob(jobData) {
     { pattern: /\b(certified tax advisor|chartered accountant|\bcpa\b|solicitor|licensed engineer|actuary|bar admission)\b/i, message: "Requires professional qualification (not held)" },
     { pattern: /\b(6|7|8|9|10)\+?\s*years?\s*(of\s*)?(tax|accounting|legal|finance|actuarial)\b/i,        message: "Requires 6+ years in specialised field (tax/finance/legal)" },
     { pattern: /\b(temporary\s*contract|fixed.?term\s*contract|contract\s*role|short.?term\s*contract|temp\s*role|temporary\s*position)\b/i, message: "Temporary/fixed-term contract" },
-    { pattern: /\b(self.employed|b2b\s*contract|b2b\s*only|business.?to.?business|freelance\s*contract|sole\s*trader|own\s*company\s*required)\b/i, message: "Self-employed/B2B contract (not employment)" }
+    { pattern: /\b(self.employed|b2b\s*(only|contract)|business.?to.?business|freelance\s*(only|contract)|must\s*be\s*self.employed|contractor\s*only|no\s*employment\s*contract|sole\s*trader|own\s*company\s*required)\b/i, message: "B2B/self-employed contract only — no employment contract" }
   ];
   for (const { pattern, message } of redFlagChecks) {
     if (pattern.test(text)) redFlags.push(message);
@@ -478,11 +502,31 @@ export function scoreJob(jobData) {
     negativeMatches.push({ message: "Temporary/fixed-term contract (not permanent)", points: -25 });
   }
 
-  // Polish language proficiency penalty (-35)
+  // Polish language proficiency penalty (-35) or auto-fail for C1/C2
+  const POLISH_C1C2 = /\b(polish|język polski)\s*(c1|c2|native|fluent|biegły|biegle)\b/i;
+  const POLISH_C1C2_REV = /\b(c1|c2|native|fluent|biegły|biegle)\s*(polish|język polski)\b/i;
+  const POLISH_PHRASES = /\b(biegła znajomość języka polskiego|native polish|fluent polish required)\b/i;
   const POLISH_REQUIRED = /\b(polish)\b.*?\b(c1|c2|fluent|native|proficient|advanced|required|mandatory|must)\b/i;
   const POLISH_REQUIRED_REV = /\b(c1|c2|fluent|native|proficient|advanced|required|mandatory|must)\b.*?\b(polish)\b/i;
   const POLISH_OPTIONAL = /\b(optional|nice to have|advantage|asset|preferred|plus|beneficial|desirable|welcome)\b/i;
   const polishSentences = text.split(/[.!?\n]+/);
+  let polishAutoFail = false;
+  for (const sentence of polishSentences) {
+    if ((POLISH_C1C2.test(sentence) || POLISH_C1C2_REV.test(sentence) || POLISH_PHRASES.test(sentence)) && !POLISH_OPTIONAL.test(sentence)) {
+      polishAutoFail = true; break;
+    }
+  }
+  if (polishAutoFail) {
+    return {
+      score: 0, colour: "fail", recommendation: "Auto Fail",
+      autoFail: true, autoFailReason: "Requires professional Polish (C1/C2) — Carlton's Polish is not at this level",
+      category: detectedCategory, cvSelection: selectCV(detectedCategory, text),
+      positiveMatches: [], negativeMatches: [], redFlags: [], skillMatches: [],
+      flags: ["Requires professional Polish (C1/C2) — Carlton's Polish is not at this level"],
+      isRemote, isOnsite, isWarsawJob: isWarsaw, locationNote: "", estimatedTime: "~5 min",
+      summary: "Auto Fail: Requires professional Polish (C1/C2) — Carlton's Polish is not at this level"
+    };
+  }
   for (const sentence of polishSentences) {
     if ((POLISH_REQUIRED.test(sentence) || POLISH_REQUIRED_REV.test(sentence)) && !POLISH_OPTIONAL.test(sentence)) {
       score = Math.max(0, score - 35);

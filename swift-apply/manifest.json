@@ -1,12 +1,14 @@
 {
   "manifest_version": 3,
   "name": "SwiftApply",
-  "version": "1.9.2",
+  "version": "2.3.0",
   "description": "Smart job application assistant — reads job postings, scores them, tailors your CV, and helps you apply faster.",
   "permissions": [
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "alarms",
+    "notifications"
   ],
   "host_permissions": [
     "https://*.indeed.com/*",
@@ -14,6 +16,7 @@
     "https://*.hiring.cafe/*",
     "https://*.pracuj.pl/*",
     "https://generativelanguage.googleapis.com/*",
+    "http://localhost:11434/*",
     "https://*/*"
   ],
   "web_accessible_resources": [

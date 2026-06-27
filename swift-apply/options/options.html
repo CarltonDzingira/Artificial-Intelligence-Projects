@@ -42,6 +42,58 @@
 
       <hr class="divider">
 
+      <!-- Ollama Local Fallback -->
+      <section class="settings-section">
+        <h2>Ollama Local Fallback</h2>
+        <p class="section-desc">
+          Automatically used when Gemini quota runs out. Free and unlimited.
+          Already installed on your laptop. Model: gemma3:4b
+        </p>
+        <div class="field-group">
+          <label for="ollama-model">Model name</label>
+          <input type="text" id="ollama-model" placeholder="gemma3:4b" autocomplete="off" />
+          <div class="field-hint" id="ollama-hint">Default: gemma3:4b</div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary" id="save-ollama">Save</button>
+          <button class="btn btn-ghost btn-sm" id="test-ollama">Test Connection</button>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- System Health -->
+      <section class="settings-section">
+        <h2>System Health</h2>
+        <p class="section-desc">Real-time status of AI services powering SwiftApply.</p>
+        <div class="health-grid">
+          <div class="health-row">
+            <span class="health-label">Gemini API</span>
+            <span class="health-value" id="health-gemini">Checking...</span>
+          </div>
+          <div class="health-row">
+            <span class="health-label">Quota today</span>
+            <span class="health-value" id="health-quota">—</span>
+          </div>
+          <div class="health-row">
+            <span class="health-label">Auto-routing</span>
+            <span class="health-value" id="health-routing">—</span>
+          </div>
+          <div class="health-row">
+            <span class="health-label">Ollama</span>
+            <span class="health-value" id="health-ollama">Checking...</span>
+          </div>
+          <div class="health-row">
+            <span class="health-label">Last Ollama check</span>
+            <span class="health-value" id="health-ollama-time">—</span>
+          </div>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="run-health-check" style="margin-top:10px">Run Health Check Now</button>
+        <div class="field-hint" id="health-check-status"></div>
+      </section>
+
+      <hr class="divider">
+
       <!-- Profile summary (read-only) -->
       <section class="settings-section">
         <h2>Your Profile</h2>
