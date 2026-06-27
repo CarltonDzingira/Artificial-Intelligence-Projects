@@ -1,0 +1,16 @@
+{
+  "name": "swift-apply",
+  "version": "1.2.0",
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build.js",
+    "build:watch": "node scripts/build.js --watch"
+  },
+  "dependencies": {
+    "pizzip": "^3.1.4",
+    "jspdf": "^2.5.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.20.0"
+  }
+}

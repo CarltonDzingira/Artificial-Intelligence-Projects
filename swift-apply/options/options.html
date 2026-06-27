@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftApply Settings</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="options-header">
+      <span class="logo">⚡</span>
+      <h1>SwiftApply Settings</h1>
+    </header>
+
+    <main class="options-body">
+
+      <!-- API Key section -->
+      <section class="settings-section">
+        <h2>Gemini API Key</h2>
+        <p class="section-desc">
+          Required for AI CV tailoring and cover letter generation.
+          Get your free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a>
+        </p>
+        <div class="field-group">
+          <label for="api-key">API Key</label>
+          <div class="input-row">
+            <input
+              type="password"
+              id="api-key"
+              placeholder="AIzaSy..."
+              autocomplete="off"
+              spellcheck="false"
+            >
+            <button class="btn btn-toggle-visibility" id="toggle-visibility" type="button">👁</button>
+          </div>
+          <div class="field-hint" id="api-key-status"></div>
+        </div>
+        <button class="btn btn-primary" id="save-api-key">Save API Key</button>
+        <button class="btn btn-ghost btn-sm" id="test-api-key">Test Connection</button>
+      </section>
+
+      <hr class="divider">
+
+      <!-- Profile summary (read-only) -->
+      <section class="settings-section">
+        <h2>Your Profile</h2>
+        <p class="section-desc">Your profile is built into SwiftApply. Here's a summary:</p>
+        <div class="profile-card">
+          <div class="profile-row">
+            <span class="profile-label">Name</span>
+            <span>Carlton Dzingira</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Email</span>
+            <span>fredrickcarlton@gmail.com</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Phone</span>
+            <span>+48577327906</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Location</span>
+            <span>Warsaw, Poland</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Current Role</span>
+            <span>Operations Expert @ Teleperformance</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Experience</span>
+            <span>4 years</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Work Auth</span>
+            <span>EU / Poland ✓</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">English</span>
+            <span>C1 / Advanced</span>
+          </div>
+          <div class="profile-row">
+            <span class="profile-label">Preference</span>
+            <span>Remote only</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- CV Templates info -->
+      <section class="settings-section">
+        <h2>CV Templates</h2>
+        <p class="section-desc">SwiftApply automatically selects the best template based on the job:</p>
+        <div class="cv-list">
+          <div class="cv-item">
+            <div class="cv-icon">💻</div>
+            <div>
+              <div class="cv-name">IT Support CV</div>
+              <div class="cv-roles">IT Support · Help Desk · Security · QA · Game Testing</div>
+            </div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-icon">🎧</div>
+            <div>
+              <div class="cv-name">Customer Support CV</div>
+              <div class="cv-roles">Customer Service · Support Agent · Representative</div>
+            </div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-icon">📋</div>
+            <div>
+              <div class="cv-name">Operations / Admin CV</div>
+              <div class="cv-roles">Operations · Admin · Coordinator · Dispatcher</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <!-- Scoring thresholds -->
+      <section class="settings-section">
+        <h2>Score Thresholds</h2>
+        <div class="threshold-list">
+          <div class="threshold-item">
+            <span class="dot dot-green"></span>
+            <span class="threshold-range">75–100</span>
+            <span class="threshold-label">Strong Match — definitely apply</span>
+          </div>
+          <div class="threshold-item">
+            <span class="dot dot-green"></span>
+            <span class="threshold-range">60–74</span>
+            <span class="threshold-label">Worth Applying — good shot</span>
+          </div>
+          <div class="threshold-item">
+            <span class="dot dot-yellow"></span>
+            <span class="threshold-range">45–59</span>
+            <span class="threshold-label">Weak Match — consider carefully</span>
+          </div>
+          <div class="threshold-item">
+            <span class="dot dot-red"></span>
+            <span class="threshold-range">1–44</span>
+            <span class="threshold-label">Skip — poor fit</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="toast" id="toast"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

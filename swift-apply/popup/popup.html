@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SwiftApply</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <div class="popup-header">
+      <span class="popup-logo">⚡</span>
+      <span class="popup-brand">SwiftApply</span>
+      <a href="#" class="popup-settings" id="open-settings" title="Settings">⚙</a>
+    </div>
+
+    <!-- API Key warning (shown if no key set) -->
+    <div class="api-warning" id="api-warning" style="display:none">
+      <p>Add your Claude API key to enable AI features</p>
+      <button class="btn btn-sm btn-warning" id="btn-open-settings">Add API Key →</button>
+    </div>
+
+    <!-- Main actions -->
+    <div class="popup-body">
+      <button class="btn btn-primary btn-full" id="btn-toggle-sidebar">
+        <span class="btn-icon">📊</span>
+        Analyse This Job
+      </button>
+
+      <div class="divider">or</div>
+
+      <button class="btn btn-secondary btn-full" id="btn-autofill">
+        <span class="btn-icon">✏️</span>
+        Auto-Fill Form
+      </button>
+    </div>
+
+    <!-- Status area -->
+    <div class="popup-status" id="popup-status" style="display:none">
+      <span id="status-text"></span>
+    </div>
+
+    <!-- Footer -->
+    <div class="popup-footer">
+      <span class="popup-site" id="popup-site">—</span>
+      <a href="#" class="popup-settings-link" id="footer-settings">Settings</a>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
