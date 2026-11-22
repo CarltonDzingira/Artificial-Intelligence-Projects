@@ -1,4 +1,4 @@
-# ⚡ SwiftApply — AI-Powered Job Application Assistant
+# ⚡ SwiftApply : AI-Powered Job Application Assistant
 
 > An intelligent Chrome extension that analyses job postings, matches them to your experience, generates tailored application documents, tracks your applications, and helps you apply faster—while keeping you fully in control.
 
