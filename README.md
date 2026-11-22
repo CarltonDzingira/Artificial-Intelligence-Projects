@@ -20,7 +20,7 @@ See the project README for installation, architecture, and implementation detail
 - 📝 Automatically generates tailored cover letters
 - 📄 Selects the most appropriate CV for each role
 - ⚡ Autofills online job application forms
-- 🔒 User remains in control—applications are never submitted automatically
+- 🔒 User remains in control, applications are never submitted automatically
 
 **Technologies**
 
